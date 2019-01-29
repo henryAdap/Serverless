@@ -1,0 +1,31 @@
+service: henry-service
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+#   region: philippines
+#   memorySize: 512
+
+functions:
+  henryEndpoints:
+    handler: index.handler
+    events:
+      - http:
+          path: henry
+          method: get
+      - http:
+          path: henry/{id}
+          method: get
+      - http:
+          path: henry
+          method: post
+      - http:
+          path: henry/{id}
+          method: put
+      - http:
+          path: henry/{id}
+          method: delete
+
+plugins:
+  - serverless-offline
