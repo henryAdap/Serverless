@@ -12,16 +12,16 @@ With a "Serverless Framework", we can quickly build, configure and deploy resour
 
 There are lots of significant advantages of using a serverless framework instead of doing manually work.
 
-In this article, we're going to build a serverless Pokemon RESTful API services with a "Serverless Framework". Checkout below table for reference.
+In this article, we're going to build a serverless RESTful API services with a "Serverless Framework". Checkout below table for reference.
 
 
 
 #	ENDPOINT	METHOD	DESCRIPTION
-1	henry/	GET	Get a list of all pokemon from the database
-2	henry/{id}	GET	Get a specific pokemon.
-3	henry/	POST	Add new pokemon to the database.
-4	henry/{id}	PUT	Update existing pokemon.
-5	henry/{id}	DELETE	Delete existing pokemon.
+1	henry/	GET	Get a list of all from the database
+2	henry/{id}	GET	Get a specific 
+3	henry/	POST	Add new to the database.
+4	henry/{id}	PUT	Update existing .
+5	henry/{id}	DELETE	Delete existing .
 Prerequisites
 Install the following tools and frameworks:
 
@@ -31,8 +31,8 @@ Visual Studio Code (preffered) or any code editor
 Postman
 Next, create the project folder and initialize it using npm.
 
-mkdir pokemon-app
-cd pokemon-app
+mkdir henry-app
+cd henry-app
 npm init -f
 Dependencies
 Install the following packages to work with "Serverless Framework"
@@ -55,7 +55,7 @@ Before we start writing the handler code, we’re going to structure the project
 
 Create the following structure at the root level:
 
-/pokemon-app/
+/henry-app/
 |--/configs
 |----/dbConfig.js
 |--/node_modules
@@ -68,7 +68,7 @@ Make sure to list private files into .gitignore file so that we don’t accident
 serverless.yml file serves as a manifest for our RESTful api service. Where we define our functions, events, and necessary resources. Later, with serverless CLI we configure and deploy our service to AWS infrastructure.
 
 # serverless.yml
-service: pokemon-service
+service: henry-service
 
 provider:
   name: aws
@@ -78,7 +78,7 @@ provider:
   memorySize: 512
 
 functions:
-  pokemonFunc:
+  henryFunc:
     handler: index.handler
     events:
       - http:
@@ -104,7 +104,7 @@ We are doing a few things here:
 service: henry-service is a name of the service. You can give any type name for your service.
 provider: This is where we specify the name of the provider we’re using (AWS as cloud service provider) and configurations specific to it. In our case, we’ve configured the runtime (Node.js) with 8.10 version and region to us-east-1.
 functions: We specify the functions provided by our service, Here I'm specifying henryFunc as function name with http events. We can also say that this is our AWS Lambda function.
-We have to store our henry somewhere, for sake of simplicity I'm chosen MySQL but you can also use another type database. I have already created a database with name pokemon_db and inside a database created table henry_db with id, name, height, weight, avatar, and createAt columns.
+We have to store our henry somewhere, for sake of simplicity I'm chosen MySQL but you can also use another type database. I have already created a database with name henry_db and inside a database created table henry_db with id, name, height, weight, avatar, and createAt columns.
 
 CREATE TABLE `henry` (
   `id` int(11) NOT NULL,
