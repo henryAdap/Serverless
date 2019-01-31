@@ -14,14 +14,14 @@ There are lots of significant advantages of using a serverless framework instead
 
 In this article, we're going to build a serverless Pokemon RESTful API services with a "Serverless Framework". Checkout below table for reference.
 
-The code for this article can be found here: https://github.com/sagar-gavhane/pokemon-app
+
 
 #	ENDPOINT	METHOD	DESCRIPTION
-1	pokemon/	GET	Get a list of all pokemon from the database
-2	pokemon/{id}	GET	Get a specific pokemon.
-3	pokemon/	POST	Add new pokemon to the database.
-4	pokemon/{id}	PUT	Update existing pokemon.
-5	pokemon/{id}	DELETE	Delete existing pokemon.
+1	henry/	GET	Get a list of all pokemon from the database
+2	henry/{id}	GET	Get a specific pokemon.
+3	henry/	POST	Add new pokemon to the database.
+4	henry/{id}	PUT	Update existing pokemon.
+5	henry/{id}	DELETE	Delete existing pokemon.
 Prerequisites
 Install the following tools and frameworks:
 
@@ -82,31 +82,31 @@ functions:
     handler: index.handler
     events:
       - http:
-          path: pokemon
+          path: henry
           method: get
       - http:
-          path: pokemon/{id}
+          path: henry/{id}
           method: get
       - http:
-          path: pokemon
+          path: henry
           method: post
       - http:
-          path: pokemon/{id}
+          path: henry/{id}
           method: put
       - http:
-          path: pokemon/{id}
+          path: henry/{id}
           method: delete
 
 plugins:
   - serverless-offline
 We are doing a few things here:
 
-service: pokemon-service is a name of the service. You can give any type name for your service.
+service: henry-service is a name of the service. You can give any type name for your service.
 provider: This is where we specify the name of the provider we’re using (AWS as cloud service provider) and configurations specific to it. In our case, we’ve configured the runtime (Node.js) with 8.10 version and region to us-east-1.
-functions: We specify the functions provided by our service, Here I'm specifying pokemonFunc as function name with http events. We can also say that this is our AWS Lambda function.
-We have to store our pokemon somewhere, for sake of simplicity I'm chosen MySQL but you can also use another type database. I have already created a database with name pokemon_db and inside a database created table pokemon_tb with id, name, height, weight, avatar, and createAt columns.
+functions: We specify the functions provided by our service, Here I'm specifying henryFunc as function name with http events. We can also say that this is our AWS Lambda function.
+We have to store our henry somewhere, for sake of simplicity I'm chosen MySQL but you can also use another type database. I have already created a database with name pokemon_db and inside a database created table henry_db with id, name, height, weight, avatar, and createAt columns.
 
-CREATE TABLE `pokemon_tb` (
+CREATE TABLE `henry` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `height` float NOT NULL,
@@ -115,9 +115,9 @@ CREATE TABLE `pokemon_tb` (
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE `pokemon_tb` ADD PRIMARY KEY (`id`);
+ALTER TABLE `henry` ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `pokemon_tb` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+ALTER TABLE `henry` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 Rather than creating and managing connections every time, we configure pool connections once inside dbConfig.js file and reused it multiple times.
 
 // dbConfig.js
@@ -126,7 +126,7 @@ const pool = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "12345",
-  database: "pokemon_app_db"
+  database: "henry_db"
 });
 
 module.exports = pool;
